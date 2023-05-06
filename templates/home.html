@@ -8,8 +8,8 @@
     </h1>
     {% if user.is_athenticated %}
         <p> welcome {{ user.username }} | <a href="{% url 'logout' %}">Log Out</a></p>
-        {% else %}
-        <a href="{% url 'login' %}" >Log In</a> | sign UP
-    
-    {% endif %} 
+    {% else %}
+        <a href="{% url 'login' %}">Log In</a> | sign UP
+
+    {% endif %}
 {% endblock %}
