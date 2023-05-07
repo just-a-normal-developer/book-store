@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #our app
     'accounts',
+    'pages',
 
 ]
 

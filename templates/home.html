@@ -11,7 +11,7 @@
             welcome {{ user.username }} | <a class="text-light" href="{% url 'logout' %}">Log Out</a>
         </p>
     {% else %}
-        <a href="{% url 'login' %}">Log In</a> | sign UP
+        <a href="{% url 'login' %}">Log In</a> | <a href="{% url 'signup' %}"> Sign Up</a>
 
     {% endif %}
 {% endblock %}
