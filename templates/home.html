@@ -6,8 +6,10 @@
     <h1>
         Home Page
     </h1>
-    {% if user.is_athenticated %}
-        <p> welcome {{ user.username }} | <a href="{% url 'logout' %}">Log Out</a></p>
+    {% if user.is_authenticated %}
+        <p>
+            welcome {{ user.username }} | <a class="text-light" href="{% url 'logout' %}">Log Out</a>
+        </p>
     {% else %}
         <a href="{% url 'login' %}">Log In</a> | sign UP
 
