@@ -8,7 +8,7 @@
     </h1>
     {% if user.is_authenticated %}
         <p>
-            welcome {{ user.username }} | <a class="text-light" href="{% url 'logout' %}">Log Out</a>
+            welcome {{ user.username }} | <a class="text-light" style="color: crimson !important;" href="{% url 'logout' %}">Log Out</a>
         </p>
     {% else %}
         <a href="{% url 'login' %}">Log In</a> | <a href="{% url 'signup' %}"> Sign Up</a>
