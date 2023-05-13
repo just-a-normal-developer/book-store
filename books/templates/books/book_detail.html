@@ -23,6 +23,11 @@
         {{ books.price }}
     </h4>
     <br>
+    <a href="{% url 'book_update' books.id %}" >
+    <buuton class = 'btn btn-info'>
+    updtaing
+    </buuton>
+    </a>
     <hr>
     <a href="{% url 'book_list' %}">books` list </a>
 

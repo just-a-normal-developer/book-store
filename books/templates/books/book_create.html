@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+    ساخت کتاب :
+    {{ books.title }}
+{% endblock %}
+
+{% block content %}
+
+    <h1>
+        create a new book
+    </h1>
+    <form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+        <input type="submit" value="ایجاد">
+
+    </form>
+    <a href="{% url 'book_list' %}">برگشت به صفحه ی اصلی</a>
+
+{% endblock %}
