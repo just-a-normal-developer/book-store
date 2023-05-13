@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+    جزءیات کتاب :
+    {{ books.title }}
+{% endblock %}
+
+{% block content %}
+
+    <h1>
+        {{ books.title }}
+    </h1>
+    <br>
+    <p>
+        {{ books.description }}
+    </p>
+    <br>
+    <p>
+        {{ books.author }}
+    </p>
+    <br>
+    <h4>
+        {{ books.price }}
+    </h4>
+    <br>
+    <hr>
+    <a href="{% url 'book_list' %}">books` list </a>
+
+
+{% endblock %}
