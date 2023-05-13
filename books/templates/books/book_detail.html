@@ -29,7 +29,13 @@
     </buuton>
     </a>
     <hr>
-    <a href="{% url 'book_list' %}">books` list </a>
+     <a href="{% url 'book_delete' books.id %}" >
+    <buuton class = 'btn btn-danger'>
+    deleting
+    </buuton>
+    </a>
+    <hr>
 
+    <a href="{% url 'book_list' %}">books` list </a>
 
 {% endblock %}
