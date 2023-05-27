@@ -17,7 +17,7 @@
             <div class="card shadow my-3">
                 <h5 class="card-header bg-success text-light px-5">فرم</h5>
                 <div class="px-5 pt-3 pb-5">
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form|crispy }}
                         <button type="submit" class="btn btn-success mt-2">ذخیره</button>
@@ -41,7 +41,7 @@
 </div>
 
 
-    <a href="{% url 'book_list' %}">برگشت به صفحه ی اصلی</a>
+    <a href="{% url 'book_list' %}" style="text-decoration: none;">برگشت به صفحه ی اصلی</a>
 
     <br>
     <br>
