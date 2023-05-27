@@ -6,12 +6,12 @@
     <h1>
         home page
     </h1>
-    {% if user.is_authenticated %}
-        <p>
-            welcome {{ user.username | capfirst }} | <a class="text-light" style="color: crimson !important;" href="{% url 'logout' %}">Log Out</a>
-        </p>
-    {% else %}
-        <a href="{% url 'login' %}">Log In</a> | <a href="{% url 'signup' %}"> Sign Up</a>
-
-    {% endif %}
+{#    {% if user.is_authenticated %}#}
+{#        <p>#}
+{#            welcome {{ user.username | capfirst }} | <a class="text-light" style="color: crimson !important;" href="{% url 'logout' %}">Log Out</a>#}
+{#        </p>#}
+{#    {% else %}#}
+{#        <a href="{% url 'login' %}">Log In</a> | <a href="{% url 'signup' %}"> Sign Up</a>#}
+{##}
+{#    {% endif %}#}
 {% endblock %}
