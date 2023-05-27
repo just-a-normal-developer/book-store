@@ -17,3 +17,8 @@ class Books(models.Model):
 
     def get_absolute_url(self):
         return reverse('book_detail' , args=[self.id])
+
+class Comments(models.Model):
+    user = models
+    text = models.TextField()
+    datetime_created = models.DateTimeField(auto_now_add = True)
