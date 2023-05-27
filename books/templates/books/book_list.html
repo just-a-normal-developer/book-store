@@ -14,9 +14,9 @@
                 <div class="card m-2" style="max-width: 45%">
                     <div class="row g-0 h-100" dir="rtl">
                         <div class="col-md-4">
-                            {% if book.cover  %}
+                            {% if book.cover %}
                                 <img src="{{ book.cover.url }}"
-                                 class="img-fluid rounded-start" alt="...">
+                                     class="img-fluid rounded-start" alt="...">
                             {% endif %}
                         </div>
                         <div class="col-md-8 h-100">
@@ -35,15 +35,38 @@
         </div>
 
     {% endfor %}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
 
+            {% if page_obj.has_previous %}
+
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a></li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+            {% if page_obj.has_next %}
+
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a></li>
+            {% endif %}
+        </ul>
+    </nav>
     <footer class="bg-light text-center text-lg-start mt-5">
         <div class="text-center bg-grey">
             <p>دوره آموزشی جنگو <a class="text-dark" href="https://codingyar.com/" target="_blank">کدینگ یار</a></p>
         </div>
     </footer>
-
-    <a href="{% url 'book_create' %}" style="text-decoration: none;">lets define a new book </a>
-    <br>
-    <br>
-    <hr>
+    <div>
+        {{ page_obj.number }}
+    </div>
+    <div>
+        <a href="{% url 'book_create' %}" style="text-decoration: none;">lets define a new book </a>
+        <br>
+        <br>
+        <hr>
+    </div>
 {% endblock %}
