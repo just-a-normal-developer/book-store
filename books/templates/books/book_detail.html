@@ -27,6 +27,7 @@
                         <div class="col-xs-12 col-md-6 text-center text-md-end mt-md-1 mt-4">
                             <h1>{{ books.title }}</h1>
                             <h5 class="small my-1"><span class="text-muted">نویسنده: </span>{{ books.author }}</h5>
+                            <h5 class="small my-1"><span class="text-muted">ایجاد کننده : </span>{{ books.user.username }}</h5>
                         </div>
                         <div class="col-xs-12 col-md-3 d-flex flex-column">
                             <h3 class="align-self-center pt-2 text-muted align-self-md-end">
@@ -81,7 +82,11 @@
             </div>
         </div>
     </div>
-    <a href="{% url 'book_update' pk=books.id %}" style="text-decoration: none;">تغییر اطلاعات کتاب</a>
+    {% if books.user == user%}
+        <a href="{% url 'book_update' pk=books.id %}" style="text-decoration: none;">تغییر اطلاعات کتاب</a>
+        <a href="{% url 'book_delete' pk=books.id %}" style="text-decoration: none;">حذف کتاب</a>
+    {% endif %}
+
 
     <br>
     <br>

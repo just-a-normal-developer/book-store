@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 class Books(models.Model):
     class Meta:
         verbose_name_plural = 'books'
+    user = models.ForeignKey(get_user_model() , on_delete=models.CASCADE)
     title = models.CharField(max_length = 200)
     description = models.TextField()
     author = models.CharField(max_length = 200)
