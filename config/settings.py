@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #third-party
     'crispy_forms',
     'crispy_bootstrap4',
+    'rest_framework',
 
     #local
     #our app
