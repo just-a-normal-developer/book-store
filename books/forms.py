@@ -5,5 +5,7 @@ from .models import Comments
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comments
-        fields = ('text' , 'recommend' , )
-
+        fields = (
+            "text",
+            "recommend",
+        )
