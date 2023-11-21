@@ -6,12 +6,31 @@
     <h1>
         home page
     </h1>
-{#    {% if user.is_authenticated %}#}
-{#        <p>#}
-{#            welcome {{ user.username | capfirst }} | <a class="text-light" style="color: crimson !important;" href="{% url 'logout' %}">Log Out</a>#}
-{#        </p>#}
-{#    {% else %}#}
-{#        <a href="{% url 'login' %}">Log In</a> | <a href="{% url 'signup' %}"> Sign Up</a>#}
-{##}
-{#    {% endif %}#}
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Welcome to My Website</h1>
+            <p>Explore our website and discover great content.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <h2>Featured Content</h2>
+                <p>Check out our featured articles and videos.</p>
+                <a href="{% url 'featured_content' %}" class="btn btn-primary">Explore</a>
+            </div>
+            <div class="col-md-6 text-center">
+                <h2>Recent Updates</h2>
+                <p>Stay up to date with our latest news and events.</p>
+                <a href="{% url 'recent_updates' %}" class="btn btn-success">View Updates</a>
+            </div>
+        </div>
+    </div>
+    {#    {% if user.is_authenticated %}#}
+    {#        <p>#}
+    {#            welcome {{ user.username | capfirst }} | <a class="text-light" style="color: crimson !important;" href="{% url 'logout' %}">Log Out</a>#}
+    {#        </p>#}
+    {#    {% else %}#}
+    {#        <a href="{% url 'login' %}">Log In</a> | <a href="{% url 'signup' %}"> Sign Up</a>#}
+    {##}
+    {#    {% endif %}#}
 {% endblock %}

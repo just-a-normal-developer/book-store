@@ -1,6 +1,7 @@
 from rest_framework import serializers
+from .models import Person
 
-class PersonSerializers(serializers.Serializer):
-    username = serializers.CharField()
-    age = serializers.IntegerField()
-    email = serializers.EmailField()
+class PersonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Person
+        fields = '__all__'
