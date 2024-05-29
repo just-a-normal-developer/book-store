@@ -1,5 +1,5 @@
 {% extends '_base.html' %}
-# we can have a extra head block for javascript code for simple jobs like check all the items in the list or in the template.
+# we can have an extra head block for javascript code for simple jobs like check all the items in the list or in the template.
 
 {% block page_title %}
     book list
@@ -57,14 +57,14 @@
     </nav>
     <footer class="bg-light text-center text-lg-start mt-5">
         <div class="text-center bg-grey">
-            <p>دوره آموزشی جنگو <a class="text-dark" href="https://codingyar.com/" target="_blank">کدینگ یار</a></p>
+                <p class="text-dark"> پروژه ی کتاب فروشی آنلاین </p>
         </div>
     </footer>
     <div>
         {{ page_obj.number }}
     </div>
     <div>
-        <a href="{% url 'book_create' %}" style="text-decoration: none;">lets define a new book </a>
+        <a href="{% url 'book_create' %}" style="text-decoration: none;">ایجاد کتاب جدید </a>
         <br>
         <br>
         <hr>

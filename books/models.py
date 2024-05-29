@@ -3,11 +3,9 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 
 
-# Create your models here.
 class Books(models.Model):
     class Meta:
         verbose_name_plural = "books"
-
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField()

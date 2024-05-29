@@ -46,6 +46,7 @@ def book_detail_view(request, pk):
 class BookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Books
     fields = [
+        "user",
         "title",
         "author",
         "description",
@@ -53,6 +54,10 @@ class BookCreateView(LoginRequiredMixin, generic.CreateView):
         "cover",
     ]
     template_name = "books/book_create.html"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):

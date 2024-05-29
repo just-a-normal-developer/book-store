@@ -83,8 +83,10 @@
         </div>
     </div>
     {% if books.user == user%}
-        <a href="{% url 'book_update' pk=books.id %}" style="text-decoration: none;">تغییر اطلاعات کتاب</a>
-        <a href="{% url 'book_delete' pk=books.id %}" style="text-decoration: none;">حذف کتاب</a>
+        <div class="d-flex justify-content-center mt-4">
+        <a href="{% url 'book_update' pk=books.id %}" style="text-decoration: none;" class="btn btn-primary btn-lg me-2">تغییر اطلاعات کتاب</a>
+        <a href="{% url 'book_delete' pk=books.id %}" style="text-decoration: none;" class="btn btn-danger btn-lg">حذف کتاب</a>
+        </div>
     {% endif %}
 
 
