@@ -1,0 +1,52 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Your Cart</h1>
+    {% if cart and cart.added_books.all %}
+    <table class="table table-hover table-bordered" style="border-color: #0d6efd;">
+        <thead class="thead-light">
+            <tr style="background-color: #d1ecf1;">
+                <th>Title</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in cart.added_books.all %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="text-end"><strong>Total Price: {{ total_price }}</strong></p>
+    {% else %}
+    <p>Your cart is empty.</p>
+    {% endif %}
+
+    <div class="d-flex justify-content-between mt-4">
+        <a href="{% url 'book_list' %}" class="btn btn-light" style="background-color: #add8e6; color: black;">ادامه ی خرید</a>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#confirmModal" style="background-color: #28a745;">پرداخت سفارش</button>
+    </div>
+</div>
+
+<!-- Modal -->
+<!--<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="confirmModalLabel">تایید پرداخت</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                از پرداخت سفارش مطمئن هستید؟-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">انصراف</button>-->
+<!--                <a class="btn btn-success">تایید</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+{% endblock %}

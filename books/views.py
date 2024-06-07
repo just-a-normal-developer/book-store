@@ -45,7 +45,6 @@ def book_detail_view(request, pk):
 class BookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Books
     fields = [
-        "user",
         "title",
         "author",
         "description",

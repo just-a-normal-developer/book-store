@@ -21,8 +21,8 @@ from cart.models import Cart
 
 
 class BookBuyingView(LoginRequiredMixin, View):
-    def post(self, request, *args, **kwargs):
-        book_id = request.POST.get('book_id')
+    def get(self, request, *args, **kwargs):
+        book_id = kwargs.get("pk")
         book = get_object_or_404(Books, id=book_id)
 
         cart, created = Cart.objects.get_or_create(user=request.user)
@@ -34,7 +34,7 @@ class BookBuyingView(LoginRequiredMixin, View):
 
 
 class CartDetailView(LoginRequiredMixin, TemplateView):
-    template_name = "books/cart_detail.html"
+    template_name = "cart/cart_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
