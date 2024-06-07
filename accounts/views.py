@@ -1,31 +1,36 @@
-from django.shortcuts import render
 from django.views import generic
 from django.urls import reverse_lazy
 
-#api's
-from rest_framework.decorators import api_view
+# api's
+
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import PersonSerializer
-from .models import CustomUser
 
 
+from .serializers import CustomUserSerializer
 from .forms import CustomUserCreationForm
+
 
 class SignUpView(generic.CreateView):
     form_class = CustomUserCreationForm
     template_name = "registration/signup.html"
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy("login")
 
-# @api_view(['GET' , 'POST' , 'PUT'])
-# def Home(request):
-#     return Response({'name' : 'amir'})
 
-class Home(APIView):
-    def get(self , request):
-        persons = CustomUser.objects.all()
-        ser_data = PersonSerializer(instance= persons , many = True)
-        return Response(data = ser_data.data)
-    # def post(self , request):
-    #     name = request.data['name']
-    #     return Response({'name' : name , })
+class UserProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        serializer = CustomUserSerializer(user)
+        return Response(serializer.data)
+
+    def put(self, request):
+        user = request.user
+        serializer = CustomUserSerializer(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

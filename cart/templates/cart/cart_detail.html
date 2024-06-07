@@ -9,6 +9,7 @@
             <tr style="background-color: #d1ecf1;">
                 <th>Title</th>
                 <th>Price</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -16,6 +17,9 @@
             <tr>
                 <td>{{ book.title }}</td>
                 <td>{{ book.price }}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmRemoveModal" data-book-id="{{ book.id }}">Remove</button>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -27,16 +31,36 @@
 
     <div class="d-flex justify-content-between mt-4">
         <a href="{% url 'book_list' %}" class="btn btn-light" style="background-color: #add8e6; color: black;">ادامه ی خرید</a>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#confirmModal" style="background-color: #28a745;">پرداخت سفارش</button>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#confirmOrderModal" style="background-color: #28a745;">پرداخت سفارش</button>
     </div>
 </div>
 
-<!-- Modal -->
-<!--<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">-->
+<!-- Remove Confirmation Modal -->
+<div class="modal fade" id="confirmRemoveModal" tabindex="-1" aria-labelledby="confirmRemoveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmRemoveModalLabel">تایید حذف</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                آیا از حذف این مورد مطمئن هستید؟
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">انصراف</button>
+                <a id="confirmRemoveBtn" href="#" class="btn btn-danger">تایید</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Order Confirmation Modal -->
+<!--<div class="modal fade" id="confirmOrderModal" tabindex="-1" aria-labelledby="confirmOrderModalLabel" aria-hidden="true">-->
 <!--    <div class="modal-dialog">-->
 <!--        <div class="modal-content">-->
 <!--            <div class="modal-header">-->
-<!--                <h5 class="modal-title" id="confirmModalLabel">تایید پرداخت</h5>-->
+<!--                <h5 class="modal-title" id="confirmOrderModalLabel">تایید پرداخت</h5>-->
 <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
 <!--            </div>-->
 <!--            <div class="modal-body">-->
@@ -49,4 +73,14 @@
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
+
+<script>
+    var confirmRemoveModal = document.getElementById('confirmRemoveModal');
+    confirmRemoveModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var bookId = button.getAttribute('data-book-id');
+        var confirmRemoveBtn = document.getElementById('confirmRemoveBtn');
+        confirmRemoveBtn.href = '/cart'+'/remove_from_cart/' + bookId + '/';
+    });
+</script>
 {% endblock %}

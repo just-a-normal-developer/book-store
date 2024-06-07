@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -7,17 +8,6 @@ from django.views.generic import TemplateView
 
 from books.models import Books
 from cart.models import Cart
-
-
-# class BookBuyingView(LoginRequiredMixin, generic.CreateView):
-#
-#     model = Cart
-#     template_name = "books/book_buying.html"
-#     success_url = reverse_lazy("book_buying")
-#
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         return super().form_valid(form)
 
 
 class BookBuyingView(LoginRequiredMixin, View):
@@ -42,3 +32,11 @@ class CartDetailView(LoginRequiredMixin, TemplateView):
         context['cart'] = cart
         context['total_price'] = cart.total_price
         return context
+
+
+@login_required
+def remove_from_cart(request, book_id):
+    cart = get_object_or_404(Cart, user=request.user)
+    book = get_object_or_404(Books, id=book_id)
+    cart.remove_book(book.id)
+    return redirect('cart_detail')

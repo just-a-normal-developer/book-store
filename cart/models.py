@@ -15,3 +15,6 @@ class Cart(models.Model):
     def total_price(self):
         return sum(book.price for book in self.added_books.all())
 
+    def remove_book(self, book_id):
+        book = self.added_books.get(id=book_id)
+        self.added_books.remove(book)

@@ -8,6 +8,7 @@ class CustomUser(AbstractUser):
 
 
 class Person(models.Model):
-    username = models.CharField(max_length=100)
-    age = models.IntegerField()
+    user = models.OneToOneField(
+        CustomUser, on_delete=models.CASCADE, verbose_name="person user"
+    )
     email = models.EmailField()

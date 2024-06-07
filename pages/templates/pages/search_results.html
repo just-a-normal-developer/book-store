@@ -1,30 +1,13 @@
 {% extends '_base.html' %}
 
-{% block page_title %} Home Page {% endblock %}
-
-{% block styles %}
-<style>
-    .book-card {
-        width: 18rem;
-        transition: transform 0.2s;
-    }
-    .book-card:hover {
-        transform: scale(1.05);
-    }
-    .card-img-top {
-        height: 200px;
-        object-fit: cover;
-    }
-</style>
-{% endblock %}
-
+{% block page_title %} Search Results {% endblock %}
 
 {% block content %}
-
 <div class="container mt-4">
-    <h1>Newest Books</h1>
+    <h1>Search Results for "{{ query }}"</h1>
+    {% if results %}
     <div class="row">
-        {% for book in newest_books %}
+        {% for book in results %}
         <div class="col-md-4 mb-4 d-flex align-items-stretch">
             <div class="card book-card">
                 {% if book.cover %}
@@ -39,7 +22,8 @@
         </div>
         {% endfor %}
     </div>
+    {% else %}
+    <p>No books found matching your query.</p>
+    {% endif %}
 </div>
-
-
 {% endblock %}

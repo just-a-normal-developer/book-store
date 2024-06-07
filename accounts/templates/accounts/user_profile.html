@@ -1,0 +1,66 @@
+{% extends '_base.html' %}
+
+{% block page_title %}User Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>User Profile</h1>
+    <form id="profile-form">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name">
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name">
+        </div>
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="number" class="form-control" id="age" name="age">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Get the current user's profile data
+        $.ajax({
+            url: "{% url 'user_profile' %}",
+            type: "GET",
+            success: function(data) {
+                $('#username').val(data.username);
+                $('#email').val(data.email);
+                $('#first_name').val(data.first_name);
+                $('#last_name').val(data.last_name);
+                $('#age').val(data.age);
+            }
+        });
+
+        // Handle the form submission
+        $('#profile-form').submit(function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: "{% url 'user_profile' %}",
+                type: "PUT",
+                data: $(this).serialize(),
+                success: function(data) {
+                    alert('Profile updated successfully!');
+                },
+                error: function(error) {
+                    alert('An error occurred. Please try again.');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
