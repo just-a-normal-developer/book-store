@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 # api's
 
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -21,6 +22,8 @@ class SignUpView(generic.CreateView):
 
 class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'accounts/user_profile.html'
 
     def get(self, request):
         user = request.user
