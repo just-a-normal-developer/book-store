@@ -55,7 +55,7 @@
         </div>
         <div class="mx-2 text-white">
             {% if user.is_authenticated %}
-            Welcome <a href="{% url 'user_profile' %}" class="link-light text-decoration-none">{{ user.username | capfirst }}</a> | <a class="link-light text-decoration-none"
+            Welcome <a href="{% url 'user_profile_template_view' %}" class="link-light text-decoration-none">{{ user.username | capfirst }}</a> | <a class="link-light text-decoration-none"
                                                         href="{% url 'logout' %}">خروج</a></div>
         {% else %}
         <a href="{% url 'login' %}"> login </a> | <a href="{% url 'signup' %}"> sign up</a>

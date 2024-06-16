@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.views import generic
 from django.urls import reverse_lazy
 
@@ -20,17 +21,20 @@ class SignUpView(generic.CreateView):
     success_url = reverse_lazy("login")
 
 
+class UserProfileTemplateView(generic.TemplateView):
+    template_name = 'accounts/user_profile.html'
+    success_url = reverse_lazy("login")
+
+
 class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'accounts/user_profile.html'
 
     def get(self, request):
         user = request.user
         serializer = CustomUserSerializer(user)
-        return Response(serializer.data)
+        return JsonResponse(serializer.data)
 
-    def put(self, request):
+    def patch(self, request):
         user = request.user
         serializer = CustomUserSerializer(user, data=request.data, partial=True)
         if serializer.is_valid():

@@ -3,86 +3,104 @@
 {% block page_title %}User Profile{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1>User Profile</h1>
-    <div>
-        <p><strong>Username:</strong> <span id="display-username"></span></p>
-        <p><strong>Email:</strong> <span id="display-email"></span></p>
-        <p><strong>First Name:</strong> <span id="display-first-name"></span></p>
-        <p><strong>Last Name:</strong> <span id="display-last-name"></span></p>
-        <p><strong>Age:</strong> <span id="display-age"></span></p>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#profileModal">Edit Profile</button>
+    <div class="container mt-5">
+        <h1>User Profile</h1>
+        <div>
+            <p><strong>Email:</strong> <span id="display-email"></span></p>
+            <p><strong>First Name:</strong> <span id="display-first-name"></span></p>
+            <p><strong>Last Name:</strong> <span id="display-last-name"></span></p>
+            <p><strong>Age:</strong> <span id="display-age"></span></p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#profileModal">Edit Profile</button>
+        </div>
     </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="profileModalLabel">Edit Profile</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="profile-form">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="first_name" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="first_name" name="first_name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="last_name" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="last_name" name="last_name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="age" class="form-label">Age</label>
-                        <input type="number" class="form-control" id="age" name="age">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Update Profile</button>
-                </form>
+    <!-- Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Edit Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="profile-form">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="age" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="age" name="age">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Get the current user's profile data
-        $.ajax({
-            url: "{% url 'user_profile' %}",
-            type: "GET",
-            success: function(data) {
-                $('#display-username').text(data.username);
-                $('#display-email').text(data.email);
-                $('#display-first-name').text(data.first_name);
-                $('#display-last-name').text(data.last_name);
-                $('#display-age').text(data.age);
-
-                $('#username').val(data.username);
-                $('#email').val(data.email);
-                $('#first_name').val(data.first_name);
-                $('#last_name').val(data.last_name);
-                $('#age').val(data.age);
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
             }
-        });
+            return cookieValue;
+        }
 
+        const csrftoken = getCookie('csrftoken');
+
+        $(document).ready(function () {
+            // Get the current user's profile data
+            console.log("asghar")
+            $.ajax({
+                url: "{% url 'user_profile' %}",
+                type: "GET",
+                success: function (data) {
+                    console.log({data})
+                    $('#display-email').text(data.email);
+                    $('#display-first-name').text(data.first_name);
+                    $('#display-last-name').text(data.last_name);
+                    $('#display-age').text(data.age);
+
+                    $('#email').val(data.email);
+                    $('#first_name').val(data.first_name);
+                    $('#last_name').val(data.last_name);
+                    $('#age').val(data.age);
+                },
+                error: function (error) {
+                    console.log('Error fetching profile data:', error);
+
+                }
+            });
+        });
         // Handle the form submission
-        $('#profile-form').submit(function(event) {
+        $('#profile-form').submit(function (event) {
             event.preventDefault();
             $.ajax({
                 url: "{% url 'user_profile' %}",
-                type: "PUT",
+                type: "PATCH",
                 data: $(this).serialize(),
-                success: function(data) {
-                    $('#display-username').text(data.username);
+                headers: {'X-CSRFToken': csrftoken},
+                success: function (data) {
                     $('#display-email').text(data.email);
                     $('#display-first-name').text(data.first_name);
                     $('#display-last-name').text(data.last_name);
@@ -91,11 +109,10 @@
                     alert('Profile updated successfully!');
                     $('#profileModal').modal('hide');
                 },
-                error: function(error) {
+                error: function (error) {
                     alert('An error occurred. Please try again.');
                 }
             });
         });
-    });
-</script>
+    </script>
 {% endblock %}
