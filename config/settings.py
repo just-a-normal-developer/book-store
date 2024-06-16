@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap4",
     "rest_framework",
+    "drf_yasg",
     # local
     # our app
     "accounts",
