@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load i18n %}
 
 {% block page_title %} Home Page {% endblock %}
 
@@ -33,7 +34,9 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ book.title }}</h5>
                     <p class="card-text">{{ book.description|truncatewords:20 }}</p>
-                    <a href="{% url 'book_detail' book.id %}" class="btn btn-primary">View Details</a>
+                    <a href="{% url 'book_detail' book.id %}" class="btn btn-primary">
+                    {% translate 'View Details' %}
+                    </a>
                 </div>
             </div>
         </div>

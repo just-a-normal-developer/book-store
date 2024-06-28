@@ -20,7 +20,7 @@ class BookBuyingView(LoginRequiredMixin, View):
         cart.added_books.add(book)
         cart.save()
 
-        return redirect('cart_detail')
+        return redirect("cart_detail")
 
 
 class CartDetailView(LoginRequiredMixin, TemplateView):
@@ -29,8 +29,8 @@ class CartDetailView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         cart = Cart.objects.get(user=self.request.user)
-        context['cart'] = cart
-        context['total_price'] = cart.total_price
+        context["cart"] = cart
+        context["total_price"] = cart.total_price
         return context
 
 
@@ -39,4 +39,4 @@ def remove_from_cart(request, book_id):
     cart = get_object_or_404(Cart, user=request.user)
     book = get_object_or_404(Books, id=book_id)
     cart.remove_book(book.id)
-    return redirect('cart_detail')
+    return redirect("cart_detail")

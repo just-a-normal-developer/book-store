@@ -8,13 +8,15 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['newest_books'] = Books.objects.order_by('-created_at')[:5]
+        context["newest_books"] = Books.objects.order_by("-created_at")[:5]
         return context
 
 
 def search_results(request):
-    query = request.GET.get('q')
-    results = []
+    query = request.GET.get("q")
     if query:
         results = Books.objects.filter(title__icontains=query)
-    return render(request, 'pages/search_results.html', {'results': results, 'query': query})
+        return render(
+            request, "pages/search_results.html", {"results": results, "query": query}
+        )
+    return render(request, "pages/search_results.html", {"results": [], "query": query})
