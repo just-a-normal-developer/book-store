@@ -1,0 +1,36 @@
+{% extends '_base.html' %}
+
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Initiate Payment</h1>
+    <form action="{% url 'payment_verify' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="card_number">Card Number</label>
+            <input type="text" id="card_number" name="card_number" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="cvv2">CVV2</label>
+            <input type="text" id="cvv2" name="cvv2" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="expiry_month">Expiry Month</label>
+            <input type="text" id="expiry_month" name="expiry_month" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="expiry_year">Expiry Year</label>
+            <input type="text" id="expiry_year" name="expiry_year" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="security_code">Security Code</label>
+            <input type="text" id="security_code" name="security_code" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="otp">OTP</label>
+            <input type="text" id="otp" name="otp" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Pay</button>
+    </form>
+</div>
+{% endblock %}
