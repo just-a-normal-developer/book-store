@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,43 +43,115 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="{% url 'book_list' %}">لیست کتاب ها</a>
-                <a class="nav-link" href="{% url 'book_create' %}">اضافه کردن کتاب</a>
-                <a class="nav-link" href="{% url 'cart_detail' %}" >مشاهده سبد خرید</a>
             </div>
-        </div>
-        <div class="ms-auto search-form d-flex">
-            <form method="get" action="{% url 'search_results' %}" class="d-flex">
-                <input type="text" name="q" class="form-control" placeholder="Search for books...">
-                <button class="btn btn-primary ms-1" type="submit">Search</button>
-            </form>
         </div>
         <div class="mx-2 text-white">
             {% if user.is_authenticated %}
-            Welcome <a href="{% url 'user_profile_template_view' %}" class="link-light text-decoration-none">{{ user.username | capfirst }}</a> | <a class="link-light text-decoration-none"
-                                                        href="{% url 'logout' %}">خروج</a></div>
+            Welcome <a href="{% url 'user_profile_template_view' %}" class="link-light text-decoration-none">
+            {{ user.username | capfirst }}</a> | <a class="link-light text-decoration-none"
+                                                 href="{% url 'logout' %}">خروج</a></div>
         {% else %}
         <a href="{% url 'login' %}"> login </a> | <a href="{% url 'signup' %}"> sign up</a>
         {% endif %}
     </div>
 </nav>
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary second-navbar" dir="rtl">
+    <div class="container">
+        <div class="btn btn-primary position-relative" dir="ltr">
+            <form method="get" action="{% url 'search_results' %}" class="d-flex">
+                <input type="text" name="q" class="form-control" placeholder="Search for books...">
+                <button class="btn btn-primary ms-1" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="btn btn-dark position-relative">
+            <a class="nav-link" href="{% url 'book_create' %}">اضافه کردن کتاب</a>
+        </div>
+        <div class="btn btn-dark position-relative">
+            <a class="nav-link" href="{% url 'cart_detail' %}">مشاهده سبد خرید</a>
+        </div>
+    </div>
+</nav>
+
+
 <div class="container">
     {% block content %}
 
     {% endblock %}
 </div>
-<!-- Optional JavaScript; choose one of the two! -->
 
-<!-- Option 1: Bootstrap Bundle with Popper -->
+
+<footer class="footer bg-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h2>Our Shop</h2>
+            </div>
+            <div class="col-md-3">
+                <h5>About Us</h5>
+                <p>
+                    This is a university project for selling online books. Our shop provides a wide variety of books
+                    and ensures a seamless online shopping experience for book enthusiasts.
+                </p>
+            </div>
+            <div class="col-md-3">
+                <h5>Contact Us</h5>
+                <ul class="list-unstyled">
+                    <li>Email: info@universitybookshop.com</li>
+                    <li>Phone: +1234567890</li>
+                    <li>Address: 123 University St, City, Country</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Follow Us</h5>
+                <ul class="list-inline footer-links">
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <p>© 2024 Book Store. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-end">
+                <ul class="list-inline footer-links">
+                    <li class="list-inline-item">
+                        <a href="#">Privacy Policy</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">Terms of Service</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">Sitemap</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
-<!-- Option 2: Separate Popper and Bootstrap JS -->
-<!--
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
--->
-
 </body>
 </html>
