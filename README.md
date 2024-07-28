@@ -25,11 +25,13 @@ The Bookstore Project is a web application developed using Django. It features a
 - **User Profiles**: Update user profile information using REST APIs and Ajax.
 - **Django Templates**: Render dynamic HTML content using Django templates.
 - **Class-Based and Functional Views**: Compare and understand the use of both types of views in Django.
+- **API Documentation with Swagger**: Interactive API documentation generated using Swagger.
 
 ## Technologies Used
 
 - **Django**: Web framework for developing the application.
 - **Django REST Framework**: For building RESTful APIs.
+- **Swagger**: For API documentation.
 - **Ajax**: For asynchronous data fetching and updating user profiles.
 - **SQLite**: Default database for development.
 
@@ -78,7 +80,7 @@ Follow these steps to set up the project locally:
 ### User Profile API
 
 - **GET /api/profile/**: Retrieve user profile information.
-- **POST /api/profile/**: Update user profile information.
+- **PUT/PATCH /api/profile/**: Update user profile information.
 
 ### Example AJAX Request
 
